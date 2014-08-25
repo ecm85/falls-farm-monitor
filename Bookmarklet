@@ -1,4 +1,4 @@
-V 1.0
+V 1.1
 
 javascript:
 (function(){
@@ -46,14 +46,15 @@ javascript:
 		"758aa80181d1488ea4a54687d47db6df.16"
 	];
 
-	var manager = new nemesis.dashboard.DataManager();
 	var remainingResults = portalGuids.length;
 	var results = [];
 	var cb = function(response) {
 		var levelEightResonators = response.resonators.filter(function(item){
 			return item.level === 8;
 		});
-		var resonatorOwners = _.map(levelEightResonators, function(item){return item.owner;});
+		var resonatorOwners = _.map(levelEightResonators, function(item){
+			return item.owner;
+		});
 		var result = {
 			title: response.title,
 			resonatorOwners: resonatorOwners
@@ -64,9 +65,8 @@ javascript:
 			console.log(_.map(results, function(item) {return item.title + "\t" + item.resonatorOwners.join();}).join("\n"));
 		}
 	};
-
-	for(var i = 0;	 i < portalGuids.length; ++i) {
-		manager.dataFetcher_.getPortalDetails(portalGuids[i], cb);
+	for(var i = 0; i < portalGuids.length; ++i) {
+		rd(P.e().Ba.Z, 'getPortalDetails', 1, { guid: portalGuids[i]}, cb);
 	}
 	void(0);
 })();
