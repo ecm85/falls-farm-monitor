@@ -66,7 +66,7 @@ javascript:
 		}
 	};
 	for(var i = 0; i < portalGuids.length; ++i) {
-		rd(P.e().Ba.Z, 'getPortalDetails', 1, { guid: portalGuids[i]}, cb);
+		td(P.g().Ea.da, 'getPortalDetails', 1, { guid: portalGuids[i]}, cb);
 	}
 	void(0);
 })();
