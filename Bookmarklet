@@ -1,4 +1,4 @@
-V 1.1
+V 1.2
 
 javascript:
 (function(){
@@ -8,6 +8,16 @@ javascript:
 	document.getElementsByTagName('head')[0].appendChild(element);
 
 	var portalGuids = [
+		"fff3620232dc442198bae1f592204f17.16",
+		"03963442c5f0480b9fd5e3eba376bf64.16",
+		"0429cafdbdd040a0a2959fed0e12c500.16",
+		"9546590924d24017bfd7c6fbdc03781a.16",
+		"dedd96c697444ffb823c14354416311f.16",
+		"fcfe56ea96aa4b4aa8e1cf76c806db97.16",
+		"76c441700b624b5f8b2dbea117cefc3b.16",
+		"81ecb7bf4d6a4b73b92bd5d7892906c5.16",
+		"4c5eaaae547a4e36a128d34b169aab11.16",
+		"4c364b07c9044038b1bc00d49817c264.16",
 		"0d4547c16b734832b21ee58903eebd01.16",
 		"5ee53d25ddcd4b71a6fa4d5571ef08e6.16",
 		"031db241c91344adb8dd8d9b370c6ca0.16",
@@ -43,20 +53,21 @@ javascript:
 		"4851c2bc07394700b8c8fa33a5b75933.16",
 		"0a85f6115ebd46759ab1d3ff05740b7b.16",
 		"9b8ada121c724a1585034d95903fd376.16",
-		"758aa80181d1488ea4a54687d47db6df.16"
+		"758aa80181d1488ea4a54687d47db6df.16",
+		"60139963f44d4134a053e57858d6c395.16",
+		"22775e24357043519c5a9f67138b6fb6.16"
 	];
 
 	var remainingResults = portalGuids.length;
 	var results = [];
 	var cb = function(response) {
-		var levelEightResonators = response.resonators.filter(function(item){
-			return item.level === 8;
+		var resonators = response.result[14];
+		var levelEightResonators = resonators.filter(function(item){
+			return item[1] === 8;
 		});
-		var resonatorOwners = _.map(levelEightResonators, function(item){
-			return item.owner;
-		});
+		var resonatorOwners = _.pluck(levelEightResonators, 0);
 		var result = {
-			title: response.title,
+			title: response.result[8],
 			resonatorOwners: resonatorOwners
 		};
 		results.push(result);
@@ -66,7 +77,7 @@ javascript:
 		}
 	};
 	for(var i = 0; i < portalGuids.length; ++i) {
-		td(P.g().Ea.da, 'getPortalDetails', 1, { guid: portalGuids[i]}, cb);
+		Xd(Q.b().oa.P, Da, {guid: portalGuids[i]}, cb)
 	}
 	void(0);
 })();
