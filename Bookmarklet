@@ -60,22 +60,14 @@ javascript:
 
 	var remainingResults = portalGuids.length;
 	var results = [];
+
 	var cb = function(response) {
-		var resonators = response.result[14];
-		var levelEightResonators = resonators.filter(function(item){
-			return item[1] === 8;
-		});
-		var resonatorOwners = _.pluck(levelEightResonators, 0);
-		var result = {
-			title: response.result[8],
-			resonatorOwners: resonatorOwners
-		};
-		results.push(result);
+		results.push(response.result);
 		--remainingResults;
 		if (remainingResults === 0){
-			console.log(_.map(results, function(item) {return item.title + "\t" + item.resonatorOwners.join();}).join("\n"));
-		}
-	};
+			console.log(JSON.stringify(results));
+		};
+	}
 	for(var i = 0; i < portalGuids.length; ++i) {
 		Xd(Q.b().pa.O, Da, {guid: portalGuids[i]}, cb)
 	}
