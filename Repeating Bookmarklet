@@ -18,6 +18,6 @@ javascript:
 		document.getElementsByTagName('head')[0].appendChild(element);
 	};
 	getReportAndGetFarmData();
-	setInterval(getReportAndGetFarmData, 60000);
+	setInterval(getReportAndGetFarmData, 600000);
 	void(0);
 })();
