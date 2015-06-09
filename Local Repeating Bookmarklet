@@ -1,0 +1,23 @@
+V 1.2
+
+javascript:
+(function(){
+	var getReportAndGetFarmData = function() {
+		var element = document.createElement('script');
+		element.src = 'http://localhost:8080/ingress/scripts/getFarmDataLocal.js';
+		element.async = true;
+		var alreadyGotData = false;
+		element.onreadystatechange = element.onload = function() {
+			var state = s.readyState;
+			if (!alreadyGotData && (!state || /loaded|complete/.test(state))) {
+				alreadyGotData = true;
+				getFarmData();
+			}
+		};
+		element.type = 'text/javascript';
+		document.getElementsByTagName('head')[0].appendChild(element);
+	};
+	getReportAndGetFarmData();
+	setInterval(getReportAndGetFarmData, 600000);
+	void(0);
+})();
